@@ -23,7 +23,7 @@ public class FlowTreatment {
     }
 
     public parserForTest(HttpRequest request){
-        String link = request.
+        String link = request.getUri()
     }
 
 }
