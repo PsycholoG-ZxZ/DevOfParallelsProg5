@@ -16,14 +16,14 @@ public class FlowTreatment {
         this.materializer = mater;
         this.system = actorSys;
 
-        return Flow.of(HttpRequest.class).map(
-                request -> {
-                    
-                }
-        )
+        return Flow.of(HttpRequest.class).map(this::parserForTest)
 
 
 
+    }
+
+    public parserForTest(HttpRequest request){
+        
     }
 
 }
