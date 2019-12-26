@@ -1,6 +1,6 @@
 public class FlowTreatment {
 
-    public FlowTreatment(){
+    public  FlowTreatment(){
 
     }
 
