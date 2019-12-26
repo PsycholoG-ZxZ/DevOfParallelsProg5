@@ -1,3 +1,7 @@
+import java.io.IOException;
+
 public class AkkaStreamsApp {
-    publ
+    public static void main(String[] args) throws IOException {
+        System.out.println();
+    }
 }
