@@ -16,7 +16,9 @@ public class FlowTreatment {
         this.materializer = mater;
         this.system = actorSys;
 
-        return Flow.of(HttpRequest request)
+        return Flow.of(HttpRequest.class).map(
+                request 
+        )
 
 
 
