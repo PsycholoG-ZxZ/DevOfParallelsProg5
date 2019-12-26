@@ -13,13 +13,14 @@ public class FlowTreatment {
     private ActorSystem system;
     private ActorMaterializer materializer;
 
-    public UrlCountInfo FlowTreatment(Http http, ActorSystem actorSys, ActorMaterializer mater){
+    public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatment(Http http, ActorSystem actorSys, ActorMaterializer mater){
         this.http = http;
         this.materializer = mater;
         this.system = actorSys;
 
         return Flow.of(HttpRequest.class)
-                .map(this::parserForTest);
+                .map(this::parserForTest)
+                .mapAsync(2, )
 
 
 
