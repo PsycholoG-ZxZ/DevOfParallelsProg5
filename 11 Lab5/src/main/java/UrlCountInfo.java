@@ -2,9 +2,9 @@ import java.util.Optional;
 
 public class UrlCountInfo {
 
-    private String link, count;
+    private Optional<String> link, count;
 
-    public UrlCountInfo(Optional<String> link, String count){
+    public UrlCountInfo(Optional<String> link, Optional<String> count){
         this.count = count;
         this.link = link;
     }

@@ -18,7 +18,9 @@ public class FlowTreatment {
         this.materializer = mater;
         this.system = actorSys;
 
-        return Flow.of(HttpRequest.class).map(this::parserForTest)
+        return Flow.of(HttpRequest.class)
+                .map(this::parserForTest)
+                .map()
 
 
 
@@ -29,7 +31,7 @@ public class FlowTreatment {
         Optional<String> count = request.getUri().query().get("count");
 
         UrlCountInfo TestInfo = new UrlCountInfo(link, count);
-        return
+        return TestInfo;
 
     }
 
