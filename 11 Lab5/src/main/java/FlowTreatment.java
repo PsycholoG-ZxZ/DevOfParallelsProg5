@@ -6,6 +6,8 @@ import akka.http.javadsl.model.HttpResponse;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
+import java.util.Optional;
+
 public class FlowTreatment {
     private Http http;
     private ActorSystem system;
@@ -22,11 +24,12 @@ public class FlowTreatment {
 
     }
 
-    public parserForTest(HttpRequest request){
-        String link = request.getUri().query().get("testUrl");
-        String count = request.getUri().query().get("count");
+    public UrlCountInfo parserForTest(HttpRequest request){
+        Optional<String> link = request.getUri().query().get("testUrl");
+        Optional<String> count = request.getUri().query().get("count");
 
-        UrlCountInfo
+        UrlCountInfo TestInfo = new UrlCountInfo(link, count);
+        return
 
     }
 
