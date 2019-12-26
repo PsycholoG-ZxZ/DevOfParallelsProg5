@@ -7,8 +7,13 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
 public class FlowTreatment {
+    private Http http;
+    private ActorSystem system;
+    private ActorMaterializer materializer;
 
-    public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatment(Http, ActorSystem, ActorMaterializer){
+    public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatment(Http http, ActorSystem actorSys, ActorMaterializer mater){
+
+
 
 
     }
