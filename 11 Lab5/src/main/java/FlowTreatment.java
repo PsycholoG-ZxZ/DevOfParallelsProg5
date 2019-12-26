@@ -12,7 +12,11 @@ public class FlowTreatment {
     private ActorMaterializer materializer;
 
     public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatment(Http http, ActorSystem actorSys, ActorMaterializer mater){
+        this.http = http;
+        this.materializer = mater;
+        this.system = actorSys;
 
+        
 
 
 
