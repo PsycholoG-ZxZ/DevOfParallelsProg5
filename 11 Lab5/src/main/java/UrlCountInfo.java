@@ -8,7 +8,11 @@ public class UrlCountInfo {
         this.count = count;
         this.link = link;
     }
-    public Optional<String> getLink{
+    public Optional<String> getLink(){
         return link;
+    }
+
+    public Optional<String> getCount() {
+        return count;
     }
 }
