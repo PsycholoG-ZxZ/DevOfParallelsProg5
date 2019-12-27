@@ -21,7 +21,7 @@ public class FlowTreatment {
         this.http = http;
         this.materializer = mater;
         this.system = actorSys;
-        this.storeActor = system.
+        this.storeActor = system.actorOf()
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
