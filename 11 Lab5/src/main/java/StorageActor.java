@@ -1,4 +1,5 @@
 import akka.actor.AbstractActor;
+import akka.japi.pf.ReceiveBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,6 @@ public class StorageActor {
 
     @Override
     public Receive createReceive(){
-        
+        return ReceiveBuilder
     }
 }
