@@ -49,7 +49,9 @@ public class FlowTreatment {
                                     .thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
                                             time / Long.parseLong(f.getCount().toString()))));
                         }))
-                .map(resp -> )
+                .map(resp -> {
+                    if ()
+                })
 
 
 
