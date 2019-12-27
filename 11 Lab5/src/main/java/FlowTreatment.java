@@ -50,7 +50,7 @@ public class FlowTreatment {
                                             time / Long.parseLong(f.getCount().toString()))));
                         }))
                 .map(resp -> {
-                    if (!resp.getFlag_about_contains() == 1){
+                    if (resp.getFlag_about_contains() != 1){
                         
                     }
                 })
