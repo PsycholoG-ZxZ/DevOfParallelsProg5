@@ -39,7 +39,7 @@ public class FlowTreatment {
                                 return CompletableFuture.completedFuture(response);
                             }
                             return Source.from(Collections.singletonList(f))
-                                    .toMat((testSink(), Keep.right()))
+                                    .toMat((testSink(), Keep.right().run))
 
                         })
                 )
