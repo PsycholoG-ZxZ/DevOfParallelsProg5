@@ -8,6 +8,7 @@ import akka.http.javadsl.model.HttpResponse;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Source;
 
 import java.time.Duration;
 import java.util.Optional;
@@ -34,7 +35,7 @@ public class FlowTreatment {
                             if (response.getFlag_about_contains() == 1){
                                 return CompletableFuture.completedFuture(response);
                             }
-                            return
+                            return Source
 
                         })
                 )
