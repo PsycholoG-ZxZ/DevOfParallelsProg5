@@ -3,6 +3,7 @@ import akka.actor.ActorSystem;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
@@ -21,7 +22,7 @@ public class FlowTreatment {
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
-                .mapAsync(4, f -> Pattern.)
+                .mapAsync(4, f -> Patterns.ask())
 
 
 
