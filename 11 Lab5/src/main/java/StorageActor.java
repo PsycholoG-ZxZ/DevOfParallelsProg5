@@ -8,8 +8,8 @@ import java.util.Optional;
 public class StorageActor {
     private Map<UrlCountInfo, String> storage = new HashMap<>();
 
-    
-    public AbstractActor.Receive createReceive(){
+    @Override
+    public Receive createReceive(){
         return ReceiveBuilder.create()
                 .match(StoreMessage.class, f -> {
                     Long time = f.getTime();
