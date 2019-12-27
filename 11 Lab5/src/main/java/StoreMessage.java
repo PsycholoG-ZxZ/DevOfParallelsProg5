@@ -1,17 +1,18 @@
 import java.util.Optional;
 
 public class StoreMessage {
-    private Optional<String> link, count;
+    private long time;
+    private UrlCountInfo test;
 
-    public UrlCountInfo(Optional<String> link, Optional<String> count){
-        this.count = count;
-        this.link = link;
+    public StoreMessage(long time, UrlCountInfo test){
+        this.time = time;
+        this.test = test;
     }
-    public Optional<String> getLink(){
-        return link;
+    public long getTime(){
+        return time;
     }
 
-    public Optional<String> getCount() {
-        return count;
+    public UrlCountInfo getTest() {
+        return test;
     }
 }
