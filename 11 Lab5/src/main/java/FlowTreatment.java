@@ -1,6 +1,7 @@
 import akka.NotUsed;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
+import akka.actor.Props;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
@@ -21,7 +22,7 @@ public class FlowTreatment {
         this.http = http;
         this.materializer = mater;
         this.system = actorSys;
-        this.storeActor = system.actorOf()
+        this.storeActor = system.actorOf(Props.create())
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
