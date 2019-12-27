@@ -70,7 +70,7 @@ public class FlowTreatment {
                 .mapAsync(4, f ->{
                     Long Begin = System.currentTimeMillis();
                     AsyncHttpClient asyncHttpClient = asyncHttpClient();
-                    return  asyncHttpClient.prepareGet(f
+                    return  asyncHttpClient.prepareGet(f).execute()
                 })
 
     }
