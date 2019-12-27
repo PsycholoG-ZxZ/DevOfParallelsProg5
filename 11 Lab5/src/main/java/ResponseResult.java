@@ -1,5 +1,6 @@
 import java.util.Optional;
 
 public class ResponseResult {
-    private Optional<String>
+    private Optional<String> link;
+    
 }
