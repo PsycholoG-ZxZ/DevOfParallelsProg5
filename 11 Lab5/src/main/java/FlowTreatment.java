@@ -65,7 +65,8 @@ public class FlowTreatment {
         return Flow.<UrlCountInfo>create()
                 .mapConcat(m -> Collections.nCopies(Integer.parseInt(m.getCount().toString()), m.getLink().toString()))
                 .mapAsync(4, f ->{
-                    Long Begin = System.currentTimeMillis()
+                    Long Begin = System.currentTimeMillis();
+                    
                 })
 
     }
