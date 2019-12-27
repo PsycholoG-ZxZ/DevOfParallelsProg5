@@ -14,8 +14,6 @@ public class StorageActor {
                     Long time = f.getTime();
                     storage.put(f.getTest(),time.toString());
                 })
-                .match(UrlCountInfo.class, f -> {
-                    
-                })
+                .match(UrlCountInfo.class, f -> sender.)
     }
 }
