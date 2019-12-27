@@ -7,6 +7,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 public class FlowTreatment {
     private Http http;
@@ -20,7 +21,7 @@ public class FlowTreatment {
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
-                .mapAsync(4, )
+                .mapAsync(4, f -> Pattern)
 
 
 
