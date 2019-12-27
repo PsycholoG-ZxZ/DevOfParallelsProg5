@@ -18,7 +18,7 @@ public class StorageActor {
                 .match(UrlCountInfo.class, f -> {
                     Optional<String> link = f.getLink();
                     if (storage.containsKey(f)){
-                        sender().tell(new UrlCountInfo(link,f.getCount()),getSelf())
+                        sender().tell(new UrlCountInfo(link,f.getCount()), getSelf());
                 }
     }
 }
