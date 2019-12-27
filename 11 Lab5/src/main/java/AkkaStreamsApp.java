@@ -16,7 +16,7 @@ public class AkkaStreamsApp {
     public static void main(String[] args) throws IOException {
         System.out.println("start!");
         ActorSystem system = ActorSystem.create("routes");
-        ActorRef storeActor = system
+        ActorRef storeActor = system.actorOf()
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = FlowTreatment(http, system, materializer);
