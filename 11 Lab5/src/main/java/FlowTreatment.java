@@ -29,7 +29,7 @@ public class FlowTreatment {
                 .map(this::parserForTest)
                 .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis(5000))
                         .thenCompose(ms -> {
-                            UrlCountInfo response = (UrlCountInfo) 
+                            UrlCountInfo response = (UrlCountInfo) ms
                         })
                 )
 
