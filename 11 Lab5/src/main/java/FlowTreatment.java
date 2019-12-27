@@ -8,6 +8,7 @@ import akka.http.javadsl.model.HttpResponse;
 import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
+import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Source;
 
 import java.time.Duration;
@@ -38,7 +39,7 @@ public class FlowTreatment {
                                 return CompletableFuture.completedFuture(response);
                             }
                             return Source.from(Collections.singletonList(f))
-                                    .toMat((testSink(),))
+                                    .toMat((testSink(), Keep.right()))
 
                         })
                 )
