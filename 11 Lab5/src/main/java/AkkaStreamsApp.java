@@ -1,5 +1,6 @@
 import akka.NotUsed;
 import akka.actor.ActorSystem;
+import akka.actor.Props;
 import akka.http.javadsl.ConnectHttp;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.ServerBinding;
@@ -16,7 +17,7 @@ public class AkkaStreamsApp {
     public static void main(String[] args) throws IOException {
         System.out.println("start!");
         ActorSystem system = ActorSystem.create("routes");
-        ActorRef storeActor = system.actorOf()
+        ActorRef storeActor = system.actorOf(Props.create())
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = FlowTreatment(http, system, materializer);
