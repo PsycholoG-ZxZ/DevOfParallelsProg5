@@ -15,12 +15,13 @@ public class FlowTreatment {
     private Http http;
     private ActorSystem system;
     private ActorMaterializer materializer;
-    ActorRef storeActor = system.actorOf()
+    ActorRef storeActor;
 
     public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatment(Http http, ActorSystem actorSys, ActorMaterializer mater){
         this.http = http;
         this.materializer = mater;
         this.system = actorSys;
+        this.storeActor = system.
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
