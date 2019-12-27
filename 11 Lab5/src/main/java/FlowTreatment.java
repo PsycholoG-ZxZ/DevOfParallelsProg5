@@ -44,7 +44,7 @@ public class FlowTreatment {
                                     .thenCompose(t -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
                                             t / Long.parseLong(f.getCount().toString()))));
                         })
-                );
+                )
 
 
 
