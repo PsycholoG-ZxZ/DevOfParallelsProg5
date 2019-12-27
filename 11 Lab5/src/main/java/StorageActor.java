@@ -7,5 +7,5 @@ public class StorageActor {
     private Map<UrlCountInfo, String> storage = new HashMap<>();
 
     @Override
-    public Receive
+    public AbstractActor.Receive 
 }
