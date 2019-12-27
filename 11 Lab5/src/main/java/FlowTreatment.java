@@ -9,6 +9,7 @@ import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
+import java.time.Duration;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -26,7 +27,7 @@ public class FlowTreatment {
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
-                .mapAsync(4, f -> Patterns.ask(storeActor, f, Dura)
+                .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis())
                 )
 
 
