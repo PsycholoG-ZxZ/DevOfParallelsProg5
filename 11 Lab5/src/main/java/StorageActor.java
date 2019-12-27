@@ -1,3 +1,3 @@
 public class StorageActor {
-    private Map<UrlCountInfo, >
+    private Map<UrlCountInfo, String>
 }
