@@ -18,6 +18,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 import java.util.regex.Pattern;
 
 public class FlowTreatment {
@@ -60,7 +61,7 @@ public class FlowTreatment {
 
     }
 
-    static final Sink<UrlCountInfo, > testSink(){
+    static final Sink<UrlCountInfo, CompletionStage> testSink(){
 
     }
 
