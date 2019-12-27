@@ -3,6 +3,7 @@ import akka.japi.pf.ReceiveBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class StorageActor {
     private Map<UrlCountInfo, String> storage = new HashMap<>();
@@ -15,8 +16,8 @@ public class StorageActor {
                     storage.put(f.getTest(),time.toString());
                 })
                 .match(UrlCountInfo.class, f -> {
-                    String link = f.getLink();
-                    sender().tell(new UrlCountInfo()))
+                    Optional<String> link = f.getLink();
+                    sender().tell(new UrlCountInfo(link))
                 }
     }
 }
