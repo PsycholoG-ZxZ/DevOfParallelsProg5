@@ -1,4 +1,5 @@
 import akka.NotUsed;
+import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.http.javadsl.Http;
 import akka.http.javadsl.model.HttpRequest;
@@ -14,7 +15,7 @@ public class FlowTreatment {
     private Http http;
     private ActorSystem system;
     private ActorMaterializer materializer;
-    
+    ActorRef 
 
     public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatment(Http http, ActorSystem actorSys, ActorMaterializer mater){
         this.http = http;
