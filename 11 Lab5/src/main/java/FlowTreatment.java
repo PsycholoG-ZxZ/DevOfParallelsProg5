@@ -20,7 +20,7 @@ public class FlowTreatment {
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
-                .mapAsync(2, )
+                .mapAsync(4, )
 
 
 
