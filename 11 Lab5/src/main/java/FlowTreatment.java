@@ -59,7 +59,7 @@ public class FlowTreatment {
 
     }
 
-    static final  testSink(){
+    static final Sink<> testSink(){
 
     }
 
