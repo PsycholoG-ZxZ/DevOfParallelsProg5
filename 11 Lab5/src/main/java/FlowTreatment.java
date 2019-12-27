@@ -52,7 +52,7 @@ public class FlowTreatment {
                 .map(resp -> {
                     if (resp.getFlag_about_contains() != 1){
                         StoreMessage storeMessage = new StoreMessage(resp.getTime(), new UrlCountInfo(resp.getLink()
-                                , ));
+                                , resp.getTime().toString()));
                     }
                 })
 
