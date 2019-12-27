@@ -11,6 +11,7 @@ import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
+import org.asynchttpclient.AsyncHttpClient;
 import sun.rmi.runtime.Log;
 
 import java.time.Duration;
@@ -66,7 +67,7 @@ public class FlowTreatment {
                 .mapConcat(m -> Collections.nCopies(Integer.parseInt(m.getCount().toString()), m.getLink().toString()))
                 .mapAsync(4, f ->{
                     Long Begin = System.currentTimeMillis();
-                    Async
+                    AsyncHttpClient
                 })
 
     }
