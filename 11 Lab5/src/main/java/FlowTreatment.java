@@ -61,7 +61,7 @@ public class FlowTreatment {
 
     }
 
-    static final Sink<UrlCountInfo, CompletionStage> testSink(){
+    static final Sink<UrlCountInfo, CompletionStage<Long>> testSink(){
 
     }
 
