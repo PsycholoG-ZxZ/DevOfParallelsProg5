@@ -40,7 +40,7 @@ public class FlowTreatment {
                             }
                             return Source.from(Collections.singletonList(f))
                                     .toMat(testSink(), Keep.right()).run(materializer)
-                                    .thenCompose(t -> CompletableFuture.completedFuture(new))
+                                    .thenCompose(t -> CompletableFuture.completedFuture(new ResponseResult()))
 
                         })
                 )
