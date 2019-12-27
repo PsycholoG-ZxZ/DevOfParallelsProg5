@@ -70,9 +70,9 @@ public class FlowTreatment {
                 .mapAsync(4, f ->{
                     Long Begin = System.currentTimeMillis();
                     AsyncHttpClient asyncHttpClient = asyncHttpClient();
-                    return  asyncHttpClient.prepareGet(f).execute().toCompletableFuture().toCompose(re -> {
-                        CompletableFuture.completedFuture(System.currentTimeMillis() - Begin);
-                    });
+                    return  asyncHttpClient.prepareGet(f).execute().toCompletableFuture().thenCompose(re ->
+                        CompletableFuture.completedFuture(System.currentTimeMillis() - Begin)
+                    );
                 }).toMat(Sink.fold(0L,Long::sum), Keep.right());
 
     }
