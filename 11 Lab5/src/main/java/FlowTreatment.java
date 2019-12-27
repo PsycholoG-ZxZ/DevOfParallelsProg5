@@ -22,6 +22,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.regex.Pattern;
 
+import static org.asynchttpclient.Dsl.asyncHttpClient;
+
 public class FlowTreatment {
     private Http http;
     private ActorSystem system;
@@ -67,7 +69,8 @@ public class FlowTreatment {
                 .mapConcat(m -> Collections.nCopies(Integer.parseInt(m.getCount().toString()), m.getLink().toString()))
                 .mapAsync(4, f ->{
                     Long Begin = System.currentTimeMillis();
-                    AsyncHttpClient asyncHttpClient = asyncHttpClient
+                    AsyncHttpClient asyncHttpClient = asyncHttpClient();
+                    
                 })
 
     }
