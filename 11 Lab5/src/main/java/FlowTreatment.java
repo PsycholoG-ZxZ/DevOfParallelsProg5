@@ -9,6 +9,7 @@ import akka.pattern.Patterns;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
+import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
 import sun.rmi.runtime.Log;
 
@@ -59,7 +60,7 @@ public class FlowTreatment {
 
     }
 
-    static final Sink<> testSink(){
+    static final Sink<UrlCountInfo, > testSink(){
 
     }
 
