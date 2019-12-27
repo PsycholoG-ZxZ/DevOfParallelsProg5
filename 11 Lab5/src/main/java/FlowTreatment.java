@@ -11,6 +11,7 @@ import akka.stream.javadsl.Flow;
 
 import java.time.Duration;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.regex.Pattern;
 
 public class FlowTreatment {
@@ -31,7 +32,7 @@ public class FlowTreatment {
                         .thenCompose(ms -> {
                             ResponseResult response = (ResponseResult) ms;
                             if (response.getFlag_about_contains() == 1){
-                                return 
+                                return CompletableFuture
                             }
 
                         })
