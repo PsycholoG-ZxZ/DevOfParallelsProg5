@@ -72,8 +72,8 @@ public class FlowTreatment {
                     AsyncHttpClient asyncHttpClient = asyncHttpClient();
                     return  asyncHttpClient.prepareGet(f).execute().toCompletableFuture().toCompose(re -> {
                         CompletableFuture.completedFuture(System.currentTimeMillis() - Begin)
-                    })
-                })
+                    });
+                }).toMat()
 
     }
 
