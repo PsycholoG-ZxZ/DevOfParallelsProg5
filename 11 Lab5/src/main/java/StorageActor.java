@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class StorageActor extends  {
+public class StorageActor extends AbstractActor {
     private Map<UrlCountInfo, String> storage = new HashMap<>();
 
     @Override
