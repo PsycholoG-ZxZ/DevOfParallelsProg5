@@ -30,7 +30,14 @@ public class FlowTreatment {
     private ActorMaterializer materializer;
     ActorRef storeActor;
 
-    public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatment(Http http, ActorSystem actorSys, ActorMaterializer mater){
+    public FlowTreatment(Http http, ActorSystem system, ActorMaterializer materializer) {
+        this.http = http;
+        this.materializer = materializer;
+        this.system = system;
+        this.storeActor = system.actorOf(Props.create(StorageActor.class));
+    }
+
+    public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatmentM(Http http, ActorSystem actorSys, ActorMaterializer mater){
         this.http = http;
         this.materializer = mater;
         this.system = actorSys;
