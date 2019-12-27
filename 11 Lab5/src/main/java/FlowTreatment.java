@@ -54,7 +54,7 @@ public class FlowTreatment {
                         StoreMessage storeMessage = new StoreMessage(resp.getTime(), new UrlCountInfo(resp.getLink()
                                 , resp.getTime().toString()));
                         storeActor.tell(storeMessage, ActorRef.noSender());
-                    } return HttpResponse.create()
+                    } return HttpResponse.create().withStatus()
                 })
 
 
