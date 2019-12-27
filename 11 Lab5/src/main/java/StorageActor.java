@@ -15,7 +15,7 @@ public class StorageActor {
                     storage.put(f.getTest(),time.toString());
                 })
                 .match(UrlCountInfo.class, f -> {
-                    String link = 
+                    String link = f.getLink();
                     sender().tell(new UrlCountInfo()))
                 }
     }
