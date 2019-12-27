@@ -30,7 +30,9 @@ public class FlowTreatment {
                 .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis(5000))
                         .thenCompose(ms -> {
                             ResponseResult response = (ResponseResult) ms;
-                            if (response.getFlag_about_contains() == 1)
+                            if (response.getFlag_about_contains() == 1){
+                                return 
+                            }
 
                         })
                 )
