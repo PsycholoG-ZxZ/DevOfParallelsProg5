@@ -15,7 +15,7 @@ public class FlowTreatment {
     private Http http;
     private ActorSystem system;
     private ActorMaterializer materializer;
-    ActorRef storeActor = system.
+    ActorRef storeActor = system.actorOf()
 
     public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatment(Http http, ActorSystem actorSys, ActorMaterializer mater){
         this.http = http;
