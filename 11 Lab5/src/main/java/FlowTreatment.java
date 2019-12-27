@@ -21,7 +21,7 @@ public class FlowTreatment {
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
-                .mapAsync(4, f -> Pattern)
+                .mapAsync(4, f -> Pattern.)
 
 
 
