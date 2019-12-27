@@ -10,6 +10,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Source;
+import sun.rmi.runtime.Log;
 
 import java.time.Duration;
 import java.util.Collection;
@@ -41,7 +42,7 @@ public class FlowTreatment {
                             return Source.from(Collections.singletonList(f))
                                     .toMat(testSink(), Keep.right()).run(materializer)
                                     .thenCompose(t -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
-                                            t / Double.parseDouble(f.getCount().toString()))))
+                                            t / Long.parseLong(f.getCount().toString()))))
 
                         })
                 )
