@@ -73,7 +73,7 @@ public class FlowTreatment {
                     return  asyncHttpClient.prepareGet(f).execute().toCompletableFuture().toCompose(re -> {
                         CompletableFuture.completedFuture(System.currentTimeMillis() - Begin)
                     });
-                }).toMat()
+                }).toMat(Sink)
 
     }
 
