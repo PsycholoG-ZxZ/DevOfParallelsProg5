@@ -9,6 +9,6 @@ public class StorageActor {
 
     @Override
     public AbstractActor.Receive createReceive(){
-        return ReceiveBuilder
+        return ReceiveBuilder.create();
     }
 }
