@@ -27,7 +27,7 @@ public class FlowTreatment {
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
-                .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis((5000)))
+                .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis(5000))
                 )
 
 
