@@ -5,11 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StorageActor {
-    private Map<String, String> storage = new HashMap<>();
+    private Map<UrlCountInfo, String> storage = new HashMap<>();
 
     @Override
     public AbstractActor.Receive createReceive(){
         return ReceiveBuilder.create()
-                .match(StoreMessage.class, f -> storage.put(f.getTest()), );
+                .match(StoreMessage.class, f -> {
+                    Long time = f.getTime();
+                    storage.put(f.getTest(),time.toString());
+                })
+                .match()
     }
 }
