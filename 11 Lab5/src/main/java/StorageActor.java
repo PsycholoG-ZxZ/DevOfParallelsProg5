@@ -20,6 +20,6 @@ public class StorageActor {
                     if (storage.containsKey(f)) {
                         sender().tell(new UrlCountInfo(link, f.getCount()), getSelf());
                     }
-                });
+                }).build(); 
     }
 }
