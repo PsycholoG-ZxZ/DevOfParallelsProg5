@@ -63,7 +63,7 @@ public class FlowTreatment {
 
     static final Sink<UrlCountInfo, CompletionStage<Long>> testSink(){
         return Flow.<UrlCountInfo>create()
-                .mapConcat()
+                .mapConcat(m -> )
 
     }
 
