@@ -22,7 +22,7 @@ public class AkkaStreamsApp {
 
         final Http http = Http.get(system);
         final ActorMaterializer materializer = ActorMaterializer.create(system);
-        FlowTreatment
+        final FlowTreatment
         final Flow<HttpRequest, HttpResponse, NotUsed> routeFlow = new FlowTreatment(http, system, materializer);
 
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
