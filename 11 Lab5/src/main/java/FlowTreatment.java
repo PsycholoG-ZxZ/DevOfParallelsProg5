@@ -22,7 +22,7 @@ public class FlowTreatment {
         this.http = http;
         this.materializer = mater;
         this.system = actorSys;
-        this.storeActor = system.actorOf(Props.create())
+        this.storeActor = system.actorOf(Props.create(StorageActor))
 
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest)
