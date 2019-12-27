@@ -10,6 +10,6 @@ public class StorageActor {
     @Override
     public AbstractActor.Receive createReceive(){
         return ReceiveBuilder.create()
-                .match(UrlCountInfo.class)
+                .match(UrlCountInfo.class, )
     }
 }
