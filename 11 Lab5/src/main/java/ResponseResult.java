@@ -1,3 +1,5 @@
+import java.util.Optional;
+
 public class ResponseResult {
-    private 
+    private Optional<String>
 }
