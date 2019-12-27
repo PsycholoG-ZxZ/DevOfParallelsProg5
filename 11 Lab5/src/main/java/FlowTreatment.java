@@ -32,8 +32,9 @@ public class FlowTreatment {
                         .thenCompose(ms -> {
                             ResponseResult response = (ResponseResult) ms;
                             if (response.getFlag_about_contains() == 1){
-                                return CompletableFuture.completedFuture()
+                                return CompletableFuture.completedFuture(response);
                             }
+                            
 
                         })
                 )
