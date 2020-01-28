@@ -15,11 +15,17 @@ public class StorageActor extends AbstractActor {
                     Long time = f.getTime();
                     storage.put(f.getTest(),time.toString());
                 })
+                /*
                 .match(UrlCountInfo.class, f -> {
                     Optional<String> link = f.getLink();
                     if (storage.containsKey(f)) {
                         sender().tell(new UrlCountInfo(link, f.getCount()), getSelf());
                     }
-                }).build();
+                })
+                */
+                .match(UrlCountInfo.class, f-> {
+                    Optional<String> link = f.getLink();
+                })
+                .build();
     }
 }
