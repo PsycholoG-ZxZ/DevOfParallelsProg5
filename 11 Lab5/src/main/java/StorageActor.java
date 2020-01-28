@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import static javax.swing.UIManager.get;
+
 public class StorageActor extends AbstractActor {
     private Map<UrlCountInfo, String> storage = new HashMap<>();
 
@@ -24,7 +26,8 @@ public class StorageActor extends AbstractActor {
                 })
                 */
                 .match(UrlCountInfo.class, f-> {
-                    sender().tell(new );
+                    StoreMessage resMessage = new StoreMessage(Long.parseLong(storage.get(f)), f);
+                    sender().tell(new ResponseResult(resMessage));
                 })
                 .build();
     }
