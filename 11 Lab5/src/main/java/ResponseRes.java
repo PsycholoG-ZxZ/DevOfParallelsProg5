@@ -1,11 +1,11 @@
 import java.util.Optional;
 
-public class ResponseResult {
+public class ResponseRes {
     private String link;
     private Long time;
     private int flag_about_contains; // 0 or 1
 
-    public ResponseResult(int flag, String link, Long time){
+    public ResponseRes(int flag, String link, Long time){
         this.flag_about_contains = flag;
         this.link = link;
         this.time = time;

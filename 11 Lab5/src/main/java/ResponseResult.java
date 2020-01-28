@@ -1,4 +1,8 @@
-package PACKAGE_NAME;
-
 public class ResponseResult {
+    private StoreMessage result;
+
+    public ResponseResult(StoreMessage res){
+        this.result = res;
+    }
+
 }
