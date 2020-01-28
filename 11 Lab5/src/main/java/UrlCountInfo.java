@@ -5,19 +5,19 @@ public class UrlCountInfo {
     private String link, count;
     private String cnt;
 
-    public UrlCountInfo(Optional<String> link, Optional<String> count){
+    public UrlCountInfo(String link, String count){
         this.count = count;
         this.link = link;
     }
-    public UrlCountInfo(Optional<String> link, String count){
+    public UrlCountInfo(String link, String count){
         this.cnt = count;
         this.link = link;
     }
-    public Optional<String> getLink(){
+    public String getLink(){
         return link;
     }
 
-    public Optional<String> getCount() {
+    public String getCount() {
         return count;
     }
 }
