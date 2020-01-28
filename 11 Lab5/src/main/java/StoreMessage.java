@@ -1,14 +1,14 @@
 import java.util.Optional;
 
 public class StoreMessage {
-    private long time;
+    private Long time;
     private UrlCountInfo test;
 
-    public StoreMessage(long time, UrlCountInfo test){
+    public StoreMessage(Long time, UrlCountInfo test){
         this.time = time;
         this.test = test;
     }
-    public long getTime(){
+    public Long getTime(){
         return time;
     }
 
