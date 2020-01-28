@@ -3,6 +3,8 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.Http;
+import akka.http.javadsl.model.ContentType;
+import akka.http.javadsl.model.ContentTypes;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.pattern.Patterns;
@@ -11,6 +13,7 @@ import akka.stream.javadsl.Flow;
 import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
+import akka.util.ByteString;
 import org.asynchttpclient.AsyncHttpClient;
 import sun.rmi.runtime.Log;
 
@@ -63,7 +66,7 @@ public class FlowTreatment {
                         storeActor.tell(resp, ActorRef.noSender());
                    // }
                    // return HttpResponse.create().withStatus(200).withEntity(resp.getTime().toString());
-                    return HttpResponse.create().withEntity(200).withEntity();
+                    return HttpResponse.create().withEntity(200).withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString());
                 });
 
 
