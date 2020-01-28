@@ -69,8 +69,8 @@ public class FlowTreatment {
     }
 
     public UrlCountInfo parserForTest(HttpRequest request){
-        Optional<String> link = request.getUri().query().get("testUrl");
-        Optional<String> count = request.getUri().query().get("count");
+        String link = request.getUri().query().get("testUrl");
+        String count = request.getUri().query().get("count");
 
         UrlCountInfo TestInfo = new UrlCountInfo(link, count);
         return TestInfo;
