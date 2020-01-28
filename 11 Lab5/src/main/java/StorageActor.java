@@ -24,7 +24,8 @@ public class StorageActor extends AbstractActor {
                 })
                 */
                 .match(UrlCountInfo.class, f-> {
-                    Optional<String> link = f.getLink();
+                    //Optional<String> link = f.getLink();
+                    String link = f.getLink();
                 })
                 .build();
     }
