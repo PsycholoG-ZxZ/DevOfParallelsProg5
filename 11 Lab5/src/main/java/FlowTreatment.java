@@ -59,7 +59,7 @@ public class FlowTreatment {
                                     .toMat(testSink(), Keep.right()).run(materializer)
                                     /*.thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
                                             time / Long.parseLong(f.getCount().toString()))));*/
-                                    .thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult()))
+                                    .thenCompose(time -> CompletableFuture.completedFuture(new  StoreMessage(time / Long.parseLong(f.getCount()), f)));
                         }))
                 .map(resp -> {
                    // if (resp.getFlag_about_contains() != 1){
