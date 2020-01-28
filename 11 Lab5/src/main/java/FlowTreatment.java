@@ -14,6 +14,7 @@ import akka.stream.javadsl.Keep;
 import akka.stream.javadsl.Sink;
 import akka.stream.javadsl.Source;
 import akka.util.ByteString;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.asynchttpclient.AsyncHttpClient;
 import sun.rmi.runtime.Log;
 
@@ -66,8 +67,8 @@ public class FlowTreatment {
                         storeActor.tell(resp, ActorRef.noSender());
                    // }
                    // return HttpResponse.create().withStatus(200).withEntity(resp.getTime().toString());
-                    
-                    return HttpResponse.create().withStatus(200).withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString());
+                    String jsonString = new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(resp);
+                    return HttpResponse.create().withStatus(200).withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString(jsonString));
                 });
 
 
