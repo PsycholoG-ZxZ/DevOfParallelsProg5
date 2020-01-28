@@ -57,13 +57,15 @@ public class FlowTreatment {
                             }
                             return Source.from(Collections.singletonList(f))
                                     .toMat(testSink(), Keep.right()).run(materializer)
-                                    .thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
-                                            time / Long.parseLong(f.getCount().toString()))));
+                                    /*.thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
+                                            time / Long.parseLong(f.getCount().toString()))));*/
+                                    .thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult()))
                         }))
                 .map(resp -> {
                    // if (resp.getFlag_about_contains() != 1){
                    //     StoreMessage storeMessage = new StoreMessage(resp.getTime(), new UrlCountInfo(resp.getLink()
                    //             , resp.getTime().toString()));
+
                     storeActor.tell(resp, ActorRef.noSender());
                     String jsonString = new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(resp);
                     return HttpResponse.create().withStatus(200).withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString(jsonString));
