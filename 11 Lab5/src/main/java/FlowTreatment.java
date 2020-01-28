@@ -66,7 +66,7 @@ public class FlowTreatment {
                         storeActor.tell(resp, ActorRef.noSender());
                    // }
                    // return HttpResponse.create().withStatus(200).withEntity(resp.getTime().toString());
-                    return HttpResponse.create().withEntity(200).withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString());
+                    return HttpResponse.create().withStatus(200).withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString());
                 });
 
 
