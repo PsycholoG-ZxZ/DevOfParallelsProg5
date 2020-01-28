@@ -8,14 +8,14 @@ import java.util.Optional;
 import static javax.swing.UIManager.get;
 
 public class StorageActor extends AbstractActor {
-    private Map<UrlCountInfo, String> storage = new HashMap<>();
+    private Map<UrlCountInfo, Long> storage = new HashMap<>();
 
     @Override
     public Receive createReceive(){
         return ReceiveBuilder.create()
                 .match(StoreMessage.class, f -> {
                     Long time = f.getTime();
-                    storage.put(f.getTest(),time.toString());
+                    storage.put(f.getTest(),time);
                 })
                 /*
                 .match(UrlCountInfo.class, f -> {
@@ -26,7 +26,7 @@ public class StorageActor extends AbstractActor {
                 })
                 */
                 .match(UrlCountInfo.class, f-> {
-                    StoreMessage resMessage = new StoreMessage(Long.parseLong(storage.get(f)), f);
+                    StoreMessage resMessage = new StoreMessage(storage.get(f), f);
                     sender().tell(new ResponseResult(resMessage),getSelf());
                 })
                 .build();
