@@ -8,7 +8,7 @@ public class ResponseResult {
     }
 
     public Optional<Object> getResult() {
-        if (result.getTest() == null){
+        if (result.getTime() == null){
             return Optional.empty();
         }else{
             return Optional.of(result);
