@@ -24,7 +24,7 @@ public class StorageActor extends AbstractActor {
                 })
                 */
                 .match(UrlCountInfo.class, f-> {
-                    
+                    sender().tell(new UrlCountInfo());
                 })
                 .build();
     }
