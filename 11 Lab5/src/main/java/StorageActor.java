@@ -27,7 +27,7 @@ public class StorageActor extends AbstractActor {
                 */
                 .match(UrlCountInfo.class, f-> {
                     StoreMessage resMessage = new StoreMessage(Long.parseLong(storage.get(f)), f);
-                    sender().tell(new ResponseResult(resMessage));
+                    sender().tell(new ResponseResult(resMessage),getSelf());
                 })
                 .build();
     }
