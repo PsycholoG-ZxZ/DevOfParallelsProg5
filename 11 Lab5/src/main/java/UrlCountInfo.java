@@ -9,10 +9,7 @@ public class UrlCountInfo {
         this.count = count;
         this.link = link;
     }
-    public UrlCountInfo(String link, String count){
-        this.cnt = count;
-        this.link = link;
-    }
+
     public String getLink(){
         return link;
     }
