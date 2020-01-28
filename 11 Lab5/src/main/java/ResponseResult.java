@@ -5,4 +5,7 @@ public class ResponseResult {
         this.result = res;
     }
 
+    public void getResult() {
+        
+    }
 }
