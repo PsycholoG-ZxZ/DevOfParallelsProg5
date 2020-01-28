@@ -48,7 +48,7 @@ public class FlowTreatment {
                 .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis(5000))
                         .thenCompose(ms -> {
                             ResponseResult response = (ResponseResult) ms;
-                            if (response.getResult()){
+                            if (response.getResult().isPresent()){
                                 return CompletableFuture.completedFuture(response);
                             }
                             return Source.from(Collections.singletonList(f))
@@ -57,11 +57,13 @@ public class FlowTreatment {
                                             time / Long.parseLong(f.getCount().toString()))));
                         }))
                 .map(resp -> {
-                    if (resp.getFlag_about_contains() != 1){
-                        StoreMessage storeMessage = new StoreMessage(resp.getTime(), new UrlCountInfo(resp.getLink()
-                                , resp.getTime().toString()));
-                        storeActor.tell(storeMessage, ActorRef.noSender());
-                    } return HttpResponse.create().withStatus(200).withEntity(resp.getTime().toString());
+                   // if (resp.getFlag_about_contains() != 1){
+                   //     StoreMessage storeMessage = new StoreMessage(resp.getTime(), new UrlCountInfo(resp.getLink()
+                   //             , resp.getTime().toString()));
+                        storeActor.tell(resp, ActorRef.noSender());
+                   // }
+                   // return HttpResponse.create().withStatus(200).withEntity(resp.getTime().toString());
+                    return HttpResponse.create().withEntity(200).withEntity();
                 });
 
 
