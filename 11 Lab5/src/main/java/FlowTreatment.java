@@ -31,6 +31,8 @@ import static org.asynchttpclient.Dsl.asyncHttpClient;
 public class FlowTreatment {
     private static String URL = "testUrl";
     private static String COUNT = "count";
+    private static int DURATION = 5000;
+    private static int PARALLELISM = 4;
     private Http http;
     private ActorSystem system;
     private ActorMaterializer materializer;
@@ -53,7 +55,7 @@ public class FlowTreatment {
                 /*
                  * С помощью Patterns.ask посылаем запрос в кеширующий актор — есть ли результат
                  */
-                .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis(5000))
+                .mapAsync(PARALLELISM, f -> Patterns.ask(storeActor, f, Duration.ofMillis(DURATION))
                         /* Обрабатываем ответ с помощью метода thenCompose */
                         .thenCompose(ms -> {
                             ResponseResult response = (ResponseResult) ms;
@@ -105,11 +107,11 @@ public class FlowTreatment {
         return Flow.<UrlCountInfo>create()
 
                 .mapConcat(m -> Collections.nCopies(Integer.parseInt(m.getCount().toString()), m.getLink().toString())) // размножаем сообщение до нужного количества копий
-                .mapAsync(4, f ->{
-                    Long Begin = System.currentTimeMillis(); //засекаем время
+                .mapAsync(PARALLELISM, f ->{
+                    Long beginTime = System.currentTimeMillis(); //засекаем время
                     AsyncHttpClient asyncHttpClient = asyncHttpClient(); //вызываем async http client
                     return  asyncHttpClient.prepareGet(f).execute().toCompletableFuture().thenCompose(re ->  // с помощью thenCompose вычисляем время
-                        CompletableFuture.completedFuture(System.currentTimeMillis() - Begin)  //возвращаем Future с временем выполнения запроса
+                        CompletableFuture.completedFuture(System.currentTimeMillis() - beginTime)  //возвращаем Future с временем выполнения запроса
                     );
                 }).toMat(Sink.fold(0L,Long::sum), Keep.right()); // Fold - подсчет суммы всех времен.
 
