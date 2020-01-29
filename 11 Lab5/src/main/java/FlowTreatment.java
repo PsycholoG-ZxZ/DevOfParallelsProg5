@@ -103,14 +103,14 @@ public class FlowTreatment {
      */
     static final Sink<UrlCountInfo, CompletionStage<Long>> testSink(){
         return Flow.<UrlCountInfo>create()
-                .mapConcat(m -> Collections.nCopies(Integer.parseInt(m.getCount().toString()), m.getLink().toString()))
+                .mapConcat(m -> Collections.nCopies(Integer.parseInt(m.getCount().toString()), m.getLink().toString())) // размножаем
                 .mapAsync(4, f ->{
                     Long Begin = System.currentTimeMillis();
                     AsyncHttpClient asyncHttpClient = asyncHttpClient();
                     return  asyncHttpClient.prepareGet(f).execute().toCompletableFuture().thenCompose(re ->
                         CompletableFuture.completedFuture(System.currentTimeMillis() - Begin)
                     );
-                }).toMat(Sink.fold(0L,Long::sum), Keep.right());
+                }).toMat(Sink.fold(0L,Long::sum), Keep.right()); // подсчет суммы всех времен.
 
     }
 
