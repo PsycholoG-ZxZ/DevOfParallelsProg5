@@ -15,6 +15,11 @@ import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 public class AkkaStreamsApp {
+
+    /*
+    * Инициализация HTTP сервера AKKA
+    */
+
     public static void main(String[] args) throws IOException {
         /*
         * Требуется разработать приложение использующее технологию akka streams и
