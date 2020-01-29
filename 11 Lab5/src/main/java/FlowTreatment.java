@@ -98,7 +98,7 @@ public class FlowTreatment {
 
     }
     /*
-     *  
+     * Задаем узел потока с одним выходом  
      */
     static final Sink<UrlCountInfo, CompletionStage<Long>> testSink(){
         return Flow.<UrlCountInfo>create()
