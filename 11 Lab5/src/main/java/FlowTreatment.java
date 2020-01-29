@@ -99,6 +99,7 @@ public class FlowTreatment {
     }
     /*
      * Задаем узел потока с одним входом
+     * Замыкает поток данных и служит его последним узлом – потребляет данные
      */
     static final Sink<UrlCountInfo, CompletionStage<Long>> testSink(){
         return Flow.<UrlCountInfo>create()
