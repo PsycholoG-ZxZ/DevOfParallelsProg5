@@ -47,8 +47,9 @@ public class FlowTreatment {
         this.system = actorSys;
         this.storeActor = system.actorOf(Props.create(StorageActor.class));
 
+        /* HttpRequest (наружний запрос) преобразуется в HttpResponse*/
         return Flow.of(HttpRequest.class)
-                .map(this::parserForTest)
+                .map(this::parserForTest) //Создаем класс содержащий пару значения URL сайта и Количества запросов 
                 .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis(5000))
                         .thenCompose(ms -> {
                             ResponseResult response = (ResponseResult) ms;
@@ -59,13 +60,12 @@ public class FlowTreatment {
                                     .toMat(testSink(), Keep.right()).run(materializer)
                                     /*.thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
                                             time / Long.parseLong(f.getCount().toString()))));*/
-                                    .thenCompose(time -> CompletableFuture.completedFuture(new  StoreMessage(time / Long.parseLong(f.getCount()), f)));
+                                    .thenCompose(time -> CompletableFuture.completedFuture(new StoreMessage(time / Long.parseLong(f.getCount()), f)));
                         }))
                 .map(resp -> {
                    // if (resp.getFlag_about_contains() != 1){
                    //     StoreMessage storeMessage = new StoreMessage(resp.getTime(), new UrlCountInfo(resp.getLink()
                    //             , resp.getTime().toString()));
-
                     storeActor.tell(resp, ActorRef.noSender());
                     String jsonString = new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(resp);
                     return HttpResponse.create().withStatus(200).withEntity(ContentTypes.APPLICATION_JSON, ByteString.fromString(jsonString));
@@ -79,7 +79,7 @@ public class FlowTreatment {
         Optional<String> link = request.getUri().query().get("testUrl");
         Optional<String> count = request.getUri().query().get("count");
 
-        UrlCountInfo TestInfo = new UrlCountInfo(link.get(), count.get());
+        UrlCountInfo  TestInfo = new UrlCountInfo(link.get(), count.get()); //Создаем класс содержащий пару значения URL сайта и Количества запросов
         return TestInfo;
 
     }
