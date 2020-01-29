@@ -49,7 +49,10 @@ public class FlowTreatment {
 
         /* HttpRequest (наружний запрос) преобразуется в HttpResponse*/
         return Flow.of(HttpRequest.class)
-                .map(this::parserForTest) //Создаем класс содержащий пару значения URL сайта и Количества запросов 
+                .map(this::parserForTest) //Создаем класс содержащий пару значения URL сайта и Количества запросов
+                /*
+                 * С помощью Patterns.ask посылаем запрос в кеширующий актор — есть ли результат
+                 */
                 .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis(5000))
                         .thenCompose(ms -> {
                             ResponseResult response = (ResponseResult) ms;
