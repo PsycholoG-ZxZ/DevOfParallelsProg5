@@ -61,15 +61,18 @@ public class FlowTreatment {
                                 return CompletableFuture.completedFuture(response); //Если результат уже высчитан, то возвращаем его как completedFuture
                             }
                             /* Если нет то тут же создаем флоу из данных запроса
-                            *
-                            * */
+                            *  выполняем его и возвращаем
+                            *  СompletionStage<Long> :
+                            *  Source.from(Collections.singletonList(r))
+                            *  .toMat(testSink, Keep.right()).run(materializer);
+                            */
                             return Source.from(Collections.singletonList(f))
                                     .toMat(testSink(), Keep.right()).run(materializer)
                                     //.thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
                                     //        time / Long.parseLong(f.getCount().toString()))));
                                     .thenCompose(time -> CompletableFuture.completedFuture(new StoreMessage(time / Long.parseLong(f.getCount()), f)));
                         }))
-                .map(resp -> {
+                .map(resp -> {    
                    // if (resp.getFlag_about_contains() != 1){
                    //     StoreMessage storeMessage = new StoreMessage(resp.getTime(), new UrlCountInfo(resp.getLink()
                    //             , resp.getTime().toString()));
