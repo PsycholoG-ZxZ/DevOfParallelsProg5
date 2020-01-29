@@ -74,8 +74,8 @@ public class FlowTreatment {
                         }))
                 .map(resp -> {
                     /*
-                    * 
-                    * */
+                     * map в HttpResponse с результатом а также посылка результата в кеширующий актор.
+                     */
 
                    // if (resp.getFlag_about_contains() != 1){
                    //     StoreMessage storeMessage = new StoreMessage(resp.getTime(), new UrlCountInfo(resp.getLink()
@@ -97,7 +97,9 @@ public class FlowTreatment {
         return TestInfo;
 
     }
-
+    /*
+     *  
+     */
     static final Sink<UrlCountInfo, CompletionStage<Long>> testSink(){
         return Flow.<UrlCountInfo>create()
                 .mapConcat(m -> Collections.nCopies(Integer.parseInt(m.getCount().toString()), m.getLink().toString()))
