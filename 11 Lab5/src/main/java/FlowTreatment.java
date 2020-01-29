@@ -29,10 +29,12 @@ import java.util.regex.Pattern;
 import static org.asynchttpclient.Dsl.asyncHttpClient;
 
 public class FlowTreatment {
+    private static String URL = "testUrl";
+    private static String COUNT = "count";
     private Http http;
     private ActorSystem system;
     private ActorMaterializer materializer;
-    ActorRef storeActor;
+    private ActorRef storeActor;
 
     public FlowTreatment(Http http, ActorSystem system, ActorMaterializer materializer) {
         this.http = http;
@@ -42,10 +44,6 @@ public class FlowTreatment {
     }
 
     public Flow<HttpRequest, HttpResponse, NotUsed> FlowTreatmentM(Http http, ActorSystem actorSys, ActorMaterializer mater){
-        this.http = http;
-        this.materializer = mater;
-        this.system = actorSys;
-        this.storeActor = system.actorOf(Props.create(StorageActor.class));
 
         /* HttpRequest (наружний запрос) преобразуется в HttpResponse
          * flow - узел потока с одним входом и выходом, нужен для обработки и преобразования проходящих через него данных
