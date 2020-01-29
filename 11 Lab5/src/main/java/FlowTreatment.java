@@ -54,15 +54,19 @@ public class FlowTreatment {
                  * С помощью Patterns.ask посылаем запрос в кеширующий актор — есть ли результат
                  */
                 .mapAsync(4, f -> Patterns.ask(storeActor, f, Duration.ofMillis(5000))
+                        /* Обрабатываем ответ с помощью метода thenCompose */
                         .thenCompose(ms -> {
                             ResponseResult response = (ResponseResult) ms;
                             if (response.getResult().isPresent()){
-                                return CompletableFuture.completedFuture(response);
+                                return CompletableFuture.completedFuture(response); //Если результат уже высчитан, то возвращаем его как completedFuture
                             }
+                            /* Если нет то тут же создаем флоу из данных запроса
+                            *
+                            * */
                             return Source.from(Collections.singletonList(f))
                                     .toMat(testSink(), Keep.right()).run(materializer)
-                                    /*.thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
-                                            time / Long.parseLong(f.getCount().toString()))));*/
+                                    //.thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
+                                    //        time / Long.parseLong(f.getCount().toString()))));
                                     .thenCompose(time -> CompletableFuture.completedFuture(new StoreMessage(time / Long.parseLong(f.getCount()), f)));
                         }))
                 .map(resp -> {
