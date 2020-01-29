@@ -10,7 +10,8 @@ import static javax.swing.UIManager.get;
 public class StorageActor extends AbstractActor {
     private Map<UrlCountInfo, Long> storage = new HashMap<>();
 
-    /* Cоздаем в actorSystem — актор который принимает две команды — поиск
+    /*
+     * Cоздаем в actorSystem — актор который принимает две команды — поиск
      * уже готового результата тестирования и результат тестрования.
      */
 
