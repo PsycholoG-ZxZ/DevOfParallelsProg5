@@ -16,6 +16,11 @@ import java.util.concurrent.CompletionStage;
 
 public class AkkaStreamsApp {
     public static void main(String[] args) throws IOException {
+        /*
+        * Требуется разработать приложение использующее технологию akka streams и
+        * позволяющее с помощью http запроса несколько одинаковых GET запросов и
+        * померять среднее время отклика.
+        */
         System.out.println("start!");
         ActorSystem system = ActorSystem.create("routes");
         ActorRef storeActor = system.actorOf(Props.create(StorageActor.class));
