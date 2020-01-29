@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.concurrent.CompletionStage;
 
 public class AkkaStreamsApp {
+    private static String LOCALHOST = "localhost";
+    private static int PORT = 8080;
 
     /*
     * Инициализация HTTP сервера AKKA
@@ -36,7 +38,7 @@ public class AkkaStreamsApp {
 
         final CompletionStage<ServerBinding> binding = http.bindAndHandle(
                 routeFlow,
-                ConnectHttp.toHost("localhost", 8080),
+                ConnectHttp.toHost(LOCALHOST, PORT),
                 materializer
                 );
         System.out.println("server Online at localhost");

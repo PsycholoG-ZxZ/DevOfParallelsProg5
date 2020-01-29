@@ -47,7 +47,9 @@ public class FlowTreatment {
         this.system = actorSys;
         this.storeActor = system.actorOf(Props.create(StorageActor.class));
 
-        /* HttpRequest (наружний запрос) преобразуется в HttpResponse*/
+        /* HttpRequest (наружний запрос) преобразуется в HttpResponse
+         * flow - узел потока с одним входом и выходом, нужен для обработки и преобразования проходящих через него данных
+         */
         return Flow.of(HttpRequest.class)
                 .map(this::parserForTest) //Создаем класс содержащий пару значения URL сайта и Количества запросов
                 /*
@@ -66,8 +68,8 @@ public class FlowTreatment {
                             *  Source.from(Collections.singletonList(r))
                             *  .toMat(testSink, Keep.right()).run(materializer);
                             */
-                            return Source.from(Collections.singletonList(f))
-                                    .toMat(testSink(), Keep.right()).run(materializer)
+                            return Source.from(Collections.singletonList(f))  // Узел потока обработки данных с одним выходом. Работает как источник данных потока
+                                    .toMat(testSink(), Keep.right()).run(materializer) // и генерирует данные
                                     //.thenCompose(time -> CompletableFuture.completedFuture(new ResponseResult(0, f.getLink(),
                                     //        time / Long.parseLong(f.getCount().toString()))));
                                     .thenCompose(time -> CompletableFuture.completedFuture(new StoreMessage(time / Long.parseLong(f.getCount()), f)));
@@ -103,14 +105,15 @@ public class FlowTreatment {
      */
     static final Sink<UrlCountInfo, CompletionStage<Long>> testSink(){
         return Flow.<UrlCountInfo>create()
-                .mapConcat(m -> Collections.nCopies(Integer.parseInt(m.getCount().toString()), m.getLink().toString())) // размножаем
+
+                .mapConcat(m -> Collections.nCopies(Integer.parseInt(m.getCount().toString()), m.getLink().toString())) // размножаем сообщение до нужного количества копий
                 .mapAsync(4, f ->{
-                    Long Begin = System.currentTimeMillis();
-                    AsyncHttpClient asyncHttpClient = asyncHttpClient();
-                    return  asyncHttpClient.prepareGet(f).execute().toCompletableFuture().thenCompose(re ->
-                        CompletableFuture.completedFuture(System.currentTimeMillis() - Begin)
+                    Long Begin = System.currentTimeMillis(); //засекаем время
+                    AsyncHttpClient asyncHttpClient = asyncHttpClient(); //вызываем async http client
+                    return  asyncHttpClient.prepareGet(f).execute().toCompletableFuture().thenCompose(re ->  // с помощью thenCompose вычисляем время
+                        CompletableFuture.completedFuture(System.currentTimeMillis() - Begin)  //возвращаем Future с временем выполнения запроса
                     );
-                }).toMat(Sink.fold(0L,Long::sum), Keep.right()); // подсчет суммы всех времен.
+                }).toMat(Sink.fold(0L,Long::sum), Keep.right()); // Fold - подсчет суммы всех времен.
 
     }
 
